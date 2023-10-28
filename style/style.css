@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* const yellow = "#C5B565";
+const green = "#79A86B";
+const gray = "#797C7E"; */
+
+:root {
+  --number-correct-position: #79A86B;
+  --number-incorrect-position: #C5B565;
+  --number-not-present: #797C7E;
+  --light-gray: #D4D6DA;
+}
+
+.super-container {
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  height: 100vh;
+}
+
+header {
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.grid-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+.cell {
+  height: 62px;
+  width: 62px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  border: 2px solid var(--light-gray);
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-bar {
+  height: 200px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  padding: 0.5rem;
+  height: 58px;
+}
+
+.number-button {
+  width: 32px;
+}
