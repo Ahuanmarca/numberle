@@ -1,25 +1,35 @@
-export function checkGuess(guess, secretNumbers, secretMap) {
-  const yellow = "#C5B565";
+export function checkGuess(guess, secretNumbers) {
   const green = "#79A86B";
+  const yellow = "#C5B565";
   const gray = "#797C7E";
 
-  const secretCopy = {...secretMap}
-  const output = [];
-  for (let i = 0; i < guess.length; i++) {
-    if (Number(guess[i]) === secretNumbers[i]) {
-      output.push(green);
-      secretCopy[guess[i]]--;
-    } else if (guess[i] in secretCopy && secretCopy[guess[i]] > 0) {
-      output.push(yellow);
-      secretCopy[guess[i]]--;
-    } else {
-      output.push(gray);
-    }
-  }
-  return output;
-}
+  const secretMap = {};
+  secretNumbers.forEach((num) => {
+    if (num in secretMap === false) secretMap[num] = 0;
+    secretMap[num]++;
+  });
+  const guessCopy = [...guess];
+  const output = Array(guess.length).fill(undefined);
 
-// guess            [1,2,3,4,5]
-// secretNumbers    [1,3,2,2,6]
-// secretMap = { 1: 1, 2: 2, 2: 1, 6: 1}
-// output = [ green, yellow, yellow, gray, gray ]
+  // GREEN CELLS
+  guessCopy.forEach((num, index, ref) => {
+    if (Number(num) === secretNumbers[index]) {
+      output[index] = green;
+      ref[index] = undefined;
+      secretMap[num]--;
+    }
+  });
+
+  // YELLOW CELLS
+  guessCopy.forEach((num, index, ref) => {
+    if (secretMap[num] > 0) {
+      output[index] = yellow;
+      secretMap[num]--;
+    }
+  });
+
+  console.log(output, guessCopy, secretMap);
+
+  // GRAY CELLS
+  return output.map((c) => (c ? c : gray));
+}
