@@ -9,7 +9,7 @@ export function checkGuess(guess, secretNumbers) {
     secretMap[num]++;
   });
   const guessCopy = [...guess];
-  const output = Array(guess.length).fill(undefined);
+  const output = Array(guess.length).fill(gray);
 
   // GREEN CELLS
   guessCopy.forEach((num, index, ref) => {
@@ -29,7 +29,5 @@ export function checkGuess(guess, secretNumbers) {
   });
 
   console.log(output, guessCopy, secretMap);
-
-  // GRAY CELLS
-  return output.map((c) => (c ? c : gray));
+  return output;
 }

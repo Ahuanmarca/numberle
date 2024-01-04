@@ -1,16 +1,14 @@
-export function generateSecretNumbers(debug = false, count = 5, debugNums) {
+export function generateSecretNumbers(debug = false, count = 5) {
   const secretNumbers = [];
-  const secretMap = {};
+  const debugNums = [1, 2, 3, 2, 1];
   for (let i = 0; i < count; i++) {
-    const number = Math.floor(Math.random() * 10);
+    const number = debug ? debugNums[i] : Math.floor(Math.random() * 10);
     secretNumbers.push(number);
-    if (!(number in secretMap)) secretMap[number] = 0;
-    secretMap[number]++;
   }
 
   if (debug) {
-    console.warn("🐞🐞 generateSecretNumbers() debug mode true 🐞🐞");
-    console.warn("🐞🐞 secret numbers: ", secretNumbers);
+    console.warn("🐞🐞 debugging generateSecretNumbers()");
+    console.warn("🐞🐞 secretNumbers: ", secretNumbers);
   }
-  return { secretNumbers, secretMap };
+  return secretNumbers;
 }
